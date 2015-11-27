@@ -1,0 +1,50 @@
+<!-- top nav -->
+<div class="navbar navbar-blue navbar-static-top">  
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle</span>
+        <span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand logo">Hacker Plaza</a>
+  	</div>
+  	<nav class="collapse navbar-collapse" role="navigation">
+    <ul class="nav navbar-nav">
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-home"></i> Home
+        <% end %>
+      </li>
+    </ul>
+    <%= form_tag hacker_search_search_all_path, class: "navbar-form navbar-left", method: 'get' do %>
+      <div class="input-group input-group-sm" style="max-width:360px;">
+        <%= search_field_tag 'q', '', class: "form-control", placeholder: "プロジェクト、ユーザー、スレッドを検索", id: "srch-term" %>
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    <% end %>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.name %></a>
+        <ul class="dropdown-menu">
+          <li>
+          <% if user_signed_in? %>
+            <%= link_to hacker_user_path(current_user.id) do %>
+            <i class="fa fa-fw fa-user"></i> プロフィール
+            <% end %>
+          <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: 'delete' do %>
+            <i class="fa fa-fw fa-power-off"></i> ログアウト
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  	</nav>
+</div>
+<!-- /top nav -->

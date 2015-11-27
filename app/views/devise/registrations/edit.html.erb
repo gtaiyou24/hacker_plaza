@@ -1,0 +1,93 @@
+<!-- content -->                      
+<div class="row">
+
+  <div class="col-sm-12">
+  <%= link_to hacker_user_path(current_user.id), class: "btn btn-primary" do %>
+    <i class="fa fa-chevron-left"></i> 戻る
+  <% end %>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-12 text-center">
+    <% if !@user.image %>
+      <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+    <% else %>
+      <%= image_tag @user.image.url, class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+    <% end %>
+      <h3>
+        <%= @user.name %>のプロフィール
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-group">
+          <label>プロフィール写真</label>
+          <%= f.file_field :image, class: "form-control" %>
+          <%= f.hidden_field :image_cache %>
+          <% if @user.persisted? && @user.image? %>
+            <label>
+              <%= f.check_box :remove_image %>
+              画像を削除
+            </label>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label>ユーザー名</label>
+          <%= f.text_field :name, class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <label>所属</label>
+          <%= f.text_field :affiliation, class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <label>趣味</label>
+          <%= f.text_field :hobby, class: "form-control input-lg" %>
+        </div>
+
+
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control input-lg" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :password %> <i>(パスワードを変更しないのであれば空欄)</i><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :current_password %> <i>(変更確認のためパスワードを入力してください)</i><br />
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control input-lg" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update" %>
+        </div>
+      <% end %>
+
+      <h3>Cancel my account</h3>
+
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div><!--/row-->

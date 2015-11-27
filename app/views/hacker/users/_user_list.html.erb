@@ -1,0 +1,26 @@
+<!-- main col --> 
+<div class="col-sm-12">
+<% if !@users.empty? %>
+  <% @users.each do |user| %>
+  <div class="row well">
+      <div class="col-md-7 text-center">
+        <%= link_to hacker_user_path(user.id) do %>
+          <% if !user.image %>
+            <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+          <% else %>
+            <%= image_tag "/user_images/#{user.image}", class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
+            <!-- height:25em;max-width:100%;width:auto; -->
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-5">
+        <%= link_to hacker_user_path(user.id) do %>
+          <h3><%= user.name %></h3>
+        <% end %>
+          <p><%= user.affiliation %></p>
+      </div>
+  </div>
+  <hr>
+  <% end %>
+<% end %>
+</div>

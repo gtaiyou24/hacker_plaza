@@ -1,0 +1,28 @@
+<!-- content -->                      
+<div class="row">
+
+  <%= render 'hacker/user_posts/user_post_form' %>
+  <hr>
+
+  <div class="col-md-12">
+    <% @feed_items.each do |feed| %>
+      <div class="row well">
+        <div class="col-md-4 col-sm-12">
+          <%= link_to hacker_user_path(feed.user.id) do %>
+            <% if !feed.user.image %>
+              <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+            <% else %>
+              <%= image_tag "/user_images/#{feed.user.image}", class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
+              <!-- height:25em;max-width:100%;width:auto; -->
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <h4><%= feed.user.name %></h4><small><%= feed.created_at.strftime("%Y年%m月%d日　%H時%M分") %></small>
+          <%= simple_format feed.content, class: "lead" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div><!--/row-->

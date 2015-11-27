@@ -1,0 +1,2 @@
+module Hacker::RelationshipsHelper
+end

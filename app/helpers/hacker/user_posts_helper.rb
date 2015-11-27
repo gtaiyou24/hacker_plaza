@@ -1,0 +1,2 @@
+module Hacker::UserPostsHelper
+end

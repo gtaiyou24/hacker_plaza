@@ -1,0 +1,2 @@
+$('#js-like-link').html('<%= escape_javascript(render("hacker/project_likes/like_links", project: @project)) %>');
+$('#js-like-count').html('<%= @project.project_likes.count %>');

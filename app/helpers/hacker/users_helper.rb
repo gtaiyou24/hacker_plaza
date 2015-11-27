@@ -1,0 +1,2 @@
+module Hacker::UsersHelper
+end

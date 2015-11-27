@@ -1,0 +1,89 @@
+<!-- content -->                      
+<div class="row">
+
+  <div class="col-sm-12">
+    <%= link_to hacker_project_path(@project.id), class: "btn btn-primary" do %>
+      <i class="fa fa-chevron-left"></i> 戻る
+    <% end %>
+    <%= link_to hacker_project_path(@project.id), class: "btn btn-danger", method: 'delete', data: {confirm: "本当に削除しますか？"} do %>
+      <i class="fa fa-trash"></i> 削除
+    <% end %>
+  </div>
+  <br>
+
+  <!-- Nav tabs -->
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">プロジェクト</a></li>
+      <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">ユーザー</a></li>
+      <li role="presentation"><a href="#tag" aria-controls="tag" role="tab" data-toggle="tab">タグ</a></li>
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="info">
+      <!-- main col --> 
+      <div class="col-sm-12 col-md-6">
+          <div class="well">
+            <%= form_for @project, url: hacker_project_path, class: "form" do |f| %>
+              <h4>プロジェクト</h4>
+              <div class="form-group">
+                <label>プロジェクト名</label>
+                <%= f.text_field :title, class: "form-control", autofocus: true %>
+              </div>
+              <div class="form-group">
+                <label>概要</label>
+                <%= f.text_area :description, class: "form-control", rows:4 %>
+              </div>
+              <div class="form-group">
+                <label>プロジェクトイメージ</label>
+                <%= f.file_field :image %>
+              </div>
+              <%= f.submit "保存", class: "btn btn-lg btn-primary" %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="user">
+      <div class="col-sm-12">
+        <%= link_to show_users_hacker_project_path(@project.id), class: "btn btn-primary" do %>
+          <i class="fa fa-plus"></i> メンバー追加
+        <% end %>
+      </div>
+
+      <div class="col-sm-12">
+        <h4>プロジェクトメンバー</h4>
+        <% @project.users.each do |user| %>
+          <%= link_to hacker_user_path(user.id) do %>
+            <%= image_tag user.image.url, class: "pull-left img-circle", style: "height:auto;max-width:100%;width:170px;" %>
+          <% end %>
+          <%= link_to hacker_user_path(user.id) do %>
+          <h4>
+            <%= user.name %>
+            <small><%= user.affiliation %></small>
+          </h4>
+          <% end %>
+          <p><%= user.hobby %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="tag">
+      <div class="col-sm-12 col-md-12">
+        <%= form_for @project, url: hacker_project_path do |f| %>
+        <div class="form-group">
+          <label>タグ</label>
+          <ul id="project-tags">
+            
+          </ul>
+        </div>
+        <%= f.submit '保存', class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+
+</div><!--/row-->

@@ -1,0 +1,9 @@
+<% if !@project.users.find_by(id: @follower.id)  %>
+	<%= link_to hacker_add_project_user_path(@project.id, @follower.id), method: 'post', remote: true, class: "btn btn-default" do %>
+	  <i class="fa fa-plus"></i> 追加
+	<% end %>
+<% else %>
+	<%= link_to hacker_destroy_project_user_path(@project.id, @follower.id), method: 'delete', remote: true, class: "btn btn-primary" do %>
+	  <i class="fa fa-check"></i> 追加済み
+	<% end %>
+<% end %>

@@ -1,0 +1,40 @@
+<!-- content -->                      
+<div class="row">
+
+  <div class="col-sm-12">
+    <%= link_to hacker_project_path(@project.id), class: "btn btn-primary" do %>
+      <i class="fa fa-chevron-left"></i> <%= @project.title %>ページへ
+    <% end %>
+  </div>
+  <br>
+
+  <div class="row">
+  	<div class="col-sm-12">
+  		<h2><%= @project.title %></h2>
+  	</div>
+  	<div class="col-lg-12 text-center">
+  		<%= image_tag "/project_images/#{@project.image}", class: "img-responsive img-thumbnail" %>
+  	</div>
+  	<div class="col-lg-12">
+  		<%= simple_format @project.description, class: "lead" %>
+  	</div>
+  </div>
+
+  <hr>
+
+	<!-- form --> 
+	<div class="col-sm-12 col-md-8 col-md-offset-2">
+    <%= form_for @project_post, url: hacker_project_project_posts_path(@project.id) do |f| %>
+      <h4>投稿</h4>
+      <div class="form-group">
+        <label>タイトル</label>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label>コンテンツ</label>
+        <%= f.cktext_area :content, :toolbar => 'mini', class: "form-control" %>
+      </div>
+      <%= f.submit "投稿", class: "btn btn-lg btn-primary" %>
+    <% end %>
+	</div>
+</div><!--/row-->

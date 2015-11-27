@@ -1,0 +1,44 @@
+<!-- content -->                      
+<div class="row">
+
+  <div class="col-sm-12">
+    <h3>メンバーの追加</h3>
+  </div>
+
+  <!-- main col --> 
+  <div class="col-sm-12">
+  <% if !@followers.empty? %>
+    <% @followers.each do |follower| %>
+    <div class="row well">
+        <div class="col-md-7 text-center">
+          <% if !follower.image %>
+            <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+          <% else %>
+            <%= image_tag "/user_images/#{follower.image}", class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
+            <!-- height:25em;max-width:100%;width:auto; -->
+          <% end %>
+        </div>
+        <div class="col-md-5">
+            <h3><%= follower.name %></h3>
+            <p><%= follower.affiliation %></p>
+
+            <div id="ajax-add-project-form">
+          <% if !@project.users.find_by(id: follower.id)  %>
+            <%= link_to hacker_add_project_user_path(@project.id, follower.id), method: 'post', remote: true, class: "btn btn-default" do %>
+              <i class="fa fa-plus"></i> 追加
+            <% end %>
+          <% else %>
+            <%= link_to hacker_destroy_project_user_path(@project.id, follower.id), method: 'delete', remote: true, class: "btn btn-primary" do %>
+              <i class="fa fa-check"></i> 追加済み
+            <% end %>
+          <% end %>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <% end %>
+  <% end %>
+  </div>
+
+</div><!--/row-->

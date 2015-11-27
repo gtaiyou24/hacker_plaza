@@ -1,0 +1,2 @@
+module Hacker::ProjectsHelper
+end

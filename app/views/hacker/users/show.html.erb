@@ -1,0 +1,75 @@
+<!-- content -->                      
+<div class="row">
+
+<% if @user.id == current_user.id %>
+  <div class="col-sm-12">
+    <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+    	<i class="fa fa-pencil"></i> 編集
+    <% end %>
+  </div>
+  <br>
+<% end %>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 text-center">
+    <% if !@user.image %>
+      <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+    <% else %>
+      <%= image_tag "/user_images/#{@user.image}", class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
+      <!-- height:25em;max-width:100%;width:auto; -->
+    <% end %>
+      <h3>
+        <%= @user.name %>
+      </h3>
+
+      <div id="ajax-follow-form">
+        <%= render 'hacker/users/follow_form' %>
+      </div>
+
+      <% @user ||= current_user %>
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+        <%= link_to following_hacker_user_path(@user) do %>
+          <span>Following</span>
+          <h4><%= @user.following.count %></h4>
+        <% end %>
+        </div>
+        <div class="col-md-3">
+        <%= link_to followers_hacker_user_path(@user) do %>
+          <span>Followers</span>
+          <h4 id="ajax-followers-count"><%= @user.followers.count %></h4>
+        <% end %>
+        </div>
+      </div>
+
+      <p class="lead"><%= @user.project_likes.count %>個のプロジェクトにいいね！しています</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 text-center">
+      <label>所属</label>
+      <p class="lead"><%= @user.affiliation %></p>
+      <label>趣味</label>
+      <p class="lead"><%= @user.hobby %></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#activitie" aria-controls="activitie" role="tab" data-toggle="tab">アクティブ (<small><%= @user.user_posts.count %></small>)</a></li>
+    <li role="presentation"><a href="#like-list" aria-controls="like-list" role="tab" data-toggle="tab">いいね！一覧</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="activitie">
+      <%= render 'hacker/user_posts/user_post_form' %>
+      <%= render 'hacker/user_posts/user_post_list' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="like-list"><%= render 'hacker/projects/project_list', projects: @projects %></div>
+  </div>
+  
+</div><!--/row-->

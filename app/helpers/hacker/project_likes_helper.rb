@@ -1,0 +1,2 @@
+module Hacker::ProjectLikesHelper
+end

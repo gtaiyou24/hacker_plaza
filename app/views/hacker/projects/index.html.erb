@@ -1,0 +1,36 @@
+<!-- content -->                      
+<div class="row">
+
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">
+      <i class="fa fa-plus"></i> プロジェクトを作成
+    </button>
+  </div>
+
+  <br>
+
+  <%= render 'hacker/projects/project_list' %>
+</div><!--/row-->
+
+<!--post modal-->
+<div id="newProject" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <%= form_for @new_project, url: hacker_projects_path do |f| %>
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    プロジェクトを作成
+      </div>
+      <div class="modal-body">
+        <div class="form-group" style="padding:14px;">
+          <%= f.text_field :title, class: "form-control", placeholder: "プロジェクト名を記入してください！" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "作成", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

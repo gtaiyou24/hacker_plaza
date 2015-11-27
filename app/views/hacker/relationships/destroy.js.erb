@@ -1,0 +1,2 @@
+$("#ajax-follow-form").html("<%= escape_javascript(render('hacker/users/follow_form')) %>");
+$("#ajax-followers-count").html('<%= @user.followers.count %>')

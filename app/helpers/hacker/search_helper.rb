@@ -1,0 +1,2 @@
+module Hacker::SearchHelper
+end
