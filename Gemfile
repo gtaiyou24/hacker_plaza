@@ -54,6 +54,7 @@ gem 'searchkick' # search by elasticsearch
 # gem 'elasticsearch-rails'
 # gem 'elasticsearch-model'
 
+gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
