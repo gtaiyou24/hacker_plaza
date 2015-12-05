@@ -1,28 +1,71 @@
 <!-- content -->                      
 <div class="row">
 
-  <%= render 'hacker/user_posts/user_post_form' %>
-  <hr>
 
-  <div class="col-md-12">
+
+  <div class="col-md-8">
+    <%= render 'hacker/user_posts/user_post_form' %>
+
     <% @feed_items.each do |feed| %>
+
       <div class="row well">
-        <div class="col-md-4 col-sm-12">
-          <%= link_to hacker_user_path(feed.user.id) do %>
-            <% if !feed.user.image %>
-              <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
+
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <%= link_to hacker_user_path(feed.user.id) do %>
+              <% if feed.user.image? %>
+                <%= image_tag feed.user.image.url, class: "img-rounded img-reponsive img-thumbnail", style: "height:auto;max-width:120px;" %>
+              <% else %>
+                <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100px;" %>
+                <!-- height:25em;max-width:100%;width:auto; -->
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-md-9">
+            <%= link_to hacker_user_path(feed.user.id) do %>
+              <h4><%= feed.user.name %></h4>
+            <% end %>
+            <span><%= feed.user.affiliation %></span><br>
+            <small><%= time_ago_in_words feed.created_at %>前</small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <%= simple_format(Rinku.auto_link(feed.content)) %>
+          </div>
+        </div>
+        
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+  <% if !@recommend_users.empty? %>
+      <h3>知り合いのかも？</h3>
+    <% @recommend_users.each do |recommend_user| %>
+      <div class="col-md-12 well">
+        <div class="media">
+          <%= link_to hacker_user_path(recommend_user.id), class: "thumbnail pull-left" do %>
+            <% if recommend_user.image? %>
+              <%= image_tag recommend_user.image.url, class: "img-rounded img-reponsive img-thumbnail", style: "max-width:80px;height:auto;" %>
             <% else %>
-              <%= image_tag "/user_images/#{feed.user.image}", class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
-              <!-- height:25em;max-width:100%;width:auto; -->
+              <img class="media-object" src="//placehold.it/80">
             <% end %>
           <% end %>
-        </div>
-        <div class="col-md-8 col-sm-12">
-          <h4><%= feed.user.name %></h4><small><%= feed.created_at.strftime("%Y年%m月%d日　%H時%M分") %></small>
-          <%= simple_format feed.content, class: "lead" %>
+            <div class="media-body">
+              <%= link_to hacker_user_path(recommend_user.id) do %>
+                <h4 class="media-heading"><%= recommend_user.name %></h4>
+              <% end %>
+                <span><%= recommend_user.affiliation %></span>
+            <p><span class="label label-info"><%= recommend_user.projects.count %> Projects</span> <span class="label label-primary"><%= recommend_user.followers.count %> followers</span></p>
+            </div>
         </div>
       </div>
     <% end %>
+  <% end %>
+    </div>
   </div>
 
 </div><!--/row-->

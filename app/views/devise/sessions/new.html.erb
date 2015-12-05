@@ -8,8 +8,8 @@
           
           <h1>ようこそHacker Plazaへ</h1>
           <p class="lead">
-            Hacker Plazaとは、意欲的で高度な技術を持ったハッカーが集うオンラインの広場です。<br>
-            ここでは、知的好奇心をお互いに刺激し合いながら、自分を成長させていきます。<br>
+            Hacker Plazaとは、プログラミングに情熱を注ぐハッカーが集うソーシャルネットワークです。<br>
+            ここでは、ハッカーの友人同士でコミュニケーションして知的好奇心をお互いに刺激し合いながら、自分を成長させていきます。<br>
             知的好奇心溢れる広場へようこそ！
           </p>
           
@@ -20,25 +20,25 @@
           <br>
 
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "col-lg-12") do |f| %>
-            <div class="form-group" style="width:340px;text-align:center;margin:0 auto;">
+            <div class="form-group animated fadeInDown" style="width:340px;text-align:center;margin:0 auto;">
               <label>Eメール</label>
               <%= f.email_field :email, autofocus: true, class: "form-control input-lg" %>
             </div>
             <br>
-            <div class="form-group" style="width:340px;text-align:center;margin:0 auto;">
+            <div class="form-group animated fadeInDown" style="width:340px;text-align:center;margin:0 auto;">
               <label>パスワード</label>
               <%= f.password_field :password, autocomplete: "off", class: "form-control input-lg" %>
             </div>
             <br>
             <% if devise_mapping.rememberable? -%>
-              <div class="field">
+              <div class="field animated fadeInDown">
                 <%= f.check_box :remember_me %>
                 <%= f.label :remember_me %>
               </div>
             <% end -%>
 
             <div class="actions">
-              <span class="input-group-btn">
+              <span class="input-group-btn animated fadeInDown">
                 <%= f.submit "ログイン", class: "btn btn-lg btn-primary" %>
               </span>
             </div>
@@ -73,33 +73,26 @@
     <hr>
   
     <div class="row">
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>Projectを公開しよう！</h3></div>
-            <div class="panel-body">
-            このサービスは、自分でサービスを開発しているHackerがプロジェクトを公開し、どのように活動しているのかを記したり、助言を得たりしましょう！<br>
-            また投資家の目にも留まり連絡が来るかもしれませんが、投資を受け入れるかどうかはあなた方の自由です。
-            </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3><i class="fa fa-users"></i> Hacker達とのつながり</h3></div>
+          <div class="panel-body">
+          私はHacker達のためにHackerが主役のソーシャルネットワークを構築し、他のソーシャルネットでは投稿しづらいことを投稿できるようにしたいと思ってこのサイトを作りました。<br>
+          ここでは友人のハッカーに自分のプロジェクト、面白い技術、わからないこと、近況を投稿しましょう！<br>
+          そしてフィードバックを得て、自分の技術・技能を高めましょう！
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>Threadを作成し、知的なコミュニケーションを！</h3></div>
-            <div class="panel-body">
-            ある話題、技術、会社などなどについてHackerたちと知的なコミュニケーションをしよう！<br>
-            自分の意見・考えを発信し、いろいろな思考をしよう！
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3><i class="fa fa-comments"></i> プログラミング、ITについての共有</h3></div>
+          <div class="panel-body">
+          Hacker友人とのコミュニケーション環境を構築することでHacker友人にわからないこと、面白い技術、自分のプロジェクトを共有することができます。<br>
+          情報を共有することで友人も楽しくなるのはもちろんですが、共有したHacker自身も友人からのフィードバックを得て新たな発見を得られることもあります。<br>
+          ”-三人寄れば文殊の知恵-”
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3>IT,Hack,ベンチャー...最新の情報を得ましょう！</h3></div>
-            <div class="panel-body">
-            最近できた新しいサービス、知らなかった技術、投資を受けたベンチャー、面白い情報など最新の知的好奇心が湧く情報をチャックできます！<br>
-            新たな発見をして次のステップへ！
-            </div>
-          </div>
-        </div>
+      </div>
     </div>
   
   <div class="row">

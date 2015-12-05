@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   # ユーザーのフィードを返す
   def feed
-    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id" # ユーザーがフォローしてりるuser_idを取得
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id" # ユーザーがフォローしているuser_idを取得
     UserPost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).order(created_at: 'desc')
   end
 
@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # ユーザーの友達を推薦 (所属、職歴によって推薦する、ログインユーザーをフォローしていて且つログインユーザーがフォローしていないユーザーを推薦)
+  def recommend_friend_users
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id" # ユーザーがフォローしているuser_idを取得
+    User.where("id NOT IN (#{following_ids}) AND id != :user_id", user_id: id) # フォローしていない人を表示
   end
          
   def self.find_for_oauth(auth)

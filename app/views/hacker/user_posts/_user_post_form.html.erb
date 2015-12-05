@@ -1,16 +1,15 @@
 <!-- main col --> 
 <% if @user.id == current_user.id %>
-<div class="col-sm-12">
-  <div class="row well">
-      <div class="col-md-6 col-sm-12">
-        <p>アイデアのマッシュアップ、面白いAPI・技術、自分のプロジェクトの進捗、ハッカー友人への近況なんでも投稿してくれ！</p>
-      	<%= form_for @user.user_posts.build, url: hacker_user_posts_path do |f| %>
-      		<div class="form-group">
-      			<%= f.text_area :content, class: "form-control", rows: 3, placeholder: '近況、クールと思ったこと　ex) Yeees!!!! by ジャック・ドーシーがツイッターを開発し終えた時の第一声' %>
-      		</div>
-      		<%= f.submit "投稿", class: "btn btn-primary" %>
-      	<% end %>
-      </div>
-  </div>
+<div class="row well">
+    <div class="col-md-12 col-sm-12">
+      <p>アイデアのマッシュアップ、面白いAPI・技術、自分のプロジェクトの進捗、コーディングの記録、ハッカー友人への近況なんでも投稿しよう！</p>
+    	<%= form_for @user.user_posts.build, url: hacker_user_posts_path do |f| %>
+    		<div class="form-group">
+    			<%= f.text_area :content, class: "form-control", rows: 3, placeholder: '近況、クールと思ったこと　ex) Yeees!!!! by ジャック・ドーシーがツイッターを開発し終えた時の第一声' %>
+    		</div>
+    		<%= f.submit "投稿", class: "btn btn-primary" %>
+    	<% end %>
+    </div>
 </div>
+<hr>
 <% end %>

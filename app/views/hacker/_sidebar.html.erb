@@ -8,17 +8,12 @@
     <ul class="nav hidden-xs" id="lg-menu">
         <li class="active">
           <%= link_to hacker_user_posts_path do %>
-          <i class="fa fa-globe"></i> Activitie
+          <i class="fa fa-globe"></i> Feed
           <% end %>
         </li>
         <li class="active">
           <%= link_to hacker_projects_path do %> 
           <i class="fa fa-rocket"></i> Project
-          <% end %>
-        </li>
-        <li>
-          <%= link_to hacker_thread_tables_path do %>
-          <i class="fa fa-comments"></i> Thread
           <% end %>
         </li>
     </ul>
@@ -40,11 +35,6 @@
       	<li>
           <%= link_to hacker_projects_path, class: "text-center" do %>
             <i class="fa fa-rocket"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to hacker_thread_tables_path, class: "text-center" do %>
-            <i class="fa fa-comments"></i>
           <% end %>
         </li>
     </ul>

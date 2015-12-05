@@ -25,9 +25,6 @@ Rails.application.routes.draw do
       post :comment_create, on: :member
     end
    end
-   resources :thread_tables, only:[:index, :new, :create] do
-    resources :responses, only:[:index, :create]
-   end
    post '/projects/like/:project_id' => 'project_likes#like', as: 'project_like' #いいね！
    delete '/projects/unlike/:project_id' => 'project_likes#unlike', as: 'project_unlike' #いいね！の取り消し
 

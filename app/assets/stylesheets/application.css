@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require hacker/hacker
+ *= require animate
  *= require_self
  */
 html,body {

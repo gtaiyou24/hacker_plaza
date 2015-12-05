@@ -22,13 +22,6 @@ before_filter :configure_account_update_params, only: [:update]
   # PUT /resource
   def update
     @user = User.find(current_user.id)
-    file = params[:user][:image]
-
-    if !file.nil?
-      file_name = file.original_filename
-      File.open("public/user_images/#{file_name}", 'wb') {|f|f.write(file.read)}
-      @user.image = file_name
-    end
 
     if @user.update(user_params)
       redirect_to hacker_user_path(current_user.id)
@@ -71,7 +64,6 @@ before_filter :configure_account_update_params, only: [:update]
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :affiliation
     devise_parameter_sanitizer.for(:account_update) << :hobby
-    devise_parameter_sanitizer.for(:account_update) << :image
   end
 
   # The path used after sign up.

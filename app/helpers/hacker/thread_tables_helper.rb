@@ -1,2 +1,0 @@
-module Hacker::ThreadTablesHelper
-end
