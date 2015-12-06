@@ -50,6 +50,7 @@ test:
 #
 production:
   <<: *default
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
   database: hacker_plaza_production
   username: hacker_plaza
   password: <%= ENV['HACKER_PLAZA_DATABASE_PASSWORD'] %>
