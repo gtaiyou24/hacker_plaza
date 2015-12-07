@@ -23,7 +23,6 @@ class Hacker::ProjectsController < HackerController
   	@project = Project.new(project_params)
     @project.users << current_user #current_userを作成したprojectに紐付けした
   	@project.save
-    Project.reindex # インデックスに追加
   	redirect_to edit_hacker_project_path(@project.id)
   end
 
@@ -32,7 +31,6 @@ class Hacker::ProjectsController < HackerController
 
   def update
     if @project.update(project_params)
-      Project.reindex # インデックスに追加
       redirect_to hacker_project_path(params[:id])
     else
       render :edit
