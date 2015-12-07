@@ -5,7 +5,11 @@
   <div class="row well">
       <div class="col-md-7">
         <%= link_to hacker_project_path(project.id) do %>
-          <%= image_tag project.image.url, class: "img-responsive img-thumbnail", style:"width:700px;height:auto;"  %>
+          <% if project.image? %>
+            <%= image_tag project.image.url, class: "img-responsive img-thumbnail", style:"width:700px;height:auto;"  %>
+          <% else %>
+            <%= image_tag 'http://placehold.it/400x400', class: "img-responsive img-thumbnail", style:"width:700px;height:auto;" %>
+          <% end %>
         <% end %>
       </div>
       <div class="col-md-5">

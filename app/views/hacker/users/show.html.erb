@@ -12,11 +12,11 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-12 text-center">
-    <% if !@user.image %>
-      <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
-    <% else %>
+    <% if @user.image? %>
       <%= image_tag @user.image.url, class: "img-circle img-reponsive img-thumbnail", style: "height:250px;width:auto;" %>
       <!-- height:25em;max-width:100%;width:auto; -->
+    <% else %>
+      <%= image_tag 'http://placehold.it/400x400', class: "img-circle", style: "height:auto;max-width:100%;width:400px;" %>
     <% end %>
       <h3>
         <%= @user.name %>

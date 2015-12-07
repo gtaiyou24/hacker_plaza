@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  searchkick 
+  searchkick
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

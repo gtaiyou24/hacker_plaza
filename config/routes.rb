@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   }
 
   namespace :hacker do
-   get '/search/search_all' => 'search#search_all'
-   resources :users, only:[:index, :show] do
+   get '/search/search_all' => 'search#search_all' # search for all path.
+   resources :users, only:[:show] do
     member do
       get :following, :followers
     end

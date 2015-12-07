@@ -1,7 +1,7 @@
 <!-- main col --> 
 <div class="col-sm-12">
 <% if !@user.user_posts.blank? %>
-  <% @user.user_posts.each do |user_post| %>
+  <% @user.user_posts.order(created_at: 'desc').each do |user_post| %>
 
   <div class="row well">
 	<div class="col-md-12">
