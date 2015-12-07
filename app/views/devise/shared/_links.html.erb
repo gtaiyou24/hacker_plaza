@@ -1,13 +1,17 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "ログイン", new_session_path(resource_name) %><br />
+  <%= link_to new_session_path(resource_name) do %>
+  	<h4>ログイン</h4><br />
+  <% end %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "新規登録", new_registration_path(resource_name) %><br />
+  <%= link_to new_registration_path(resource_name) do %>
+  	<h4>新規登録</h4><br />
+  <% end %>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "パスワードをお忘れですか？", new_password_path(resource_name) %><br />
+  <%= link_to "パスワードをお忘れですか？", new_password_path(resource_name)  %><br />
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
