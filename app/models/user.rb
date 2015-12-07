@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :project_likes
   has_many :like_projects, through: :project_likes, source: :project #ユーザーが[いいね！]しているプロジェクトの取得
   has_many :user_posts, dependent: :destroy # ユーザーの投稿
+  has_many :user_post_comments
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー
   has_many :following, through: :active_relationships, source: :followed # フォローしているユーザー

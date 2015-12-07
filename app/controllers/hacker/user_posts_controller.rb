@@ -14,6 +14,14 @@ class Hacker::UserPostsController < HackerController
 		redirect_to hacker_user_path(current_user.id)
 	end
 
+	def comment_create
+		@user_post_comment = UserPostComment.new(comment: params[:user_post_comment][:comment])
+		@user_post_comment.user_id = current_user.id
+		@user_post_comment.user_post_id = params[:id]
+		@user_post_comment.save
+		redirect_to hacker_user_posts_path
+	end
+
 	private
 
 	def user_post_params
