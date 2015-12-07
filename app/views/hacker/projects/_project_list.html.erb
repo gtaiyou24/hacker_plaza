@@ -8,7 +8,7 @@
           <% if project.image? %>
             <%= image_tag project.image.url, class: "img-responsive img-thumbnail", style:"width:700px;height:auto;"  %>
           <% else %>
-            <%= image_tag 'http://placehold.it/400x400', class: "img-responsive img-thumbnail", style:"width:700px;height:auto;" %>
+            <%= image_tag 'http://placehold.it/700x300', class: "img-responsive img-thumbnail", style:"width:700px;height:auto;max-height:300px;" %>
           <% end %>
         <% end %>
       </div>
