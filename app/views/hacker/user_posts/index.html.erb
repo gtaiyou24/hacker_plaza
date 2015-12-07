@@ -59,7 +59,39 @@
         <div class="row">
           <div class="col-sm-12">
             <%= simple_format(Rinku.auto_link(feed.content)) %>
+        <% if !feed.user_post_comments.empty? %>
+          <% feed.user_post_comments.each do |comment| %>
+            <hr>
+            <div class="media">
+                <%= link_to hacker_user_path(comment.user.id), class: "pull-left" do %>
+                  <% if comment.user.image? %>
+                    <%= image_tag comment.user.image.url, class: "media-object", style: "max-width:64px;height:auto;" %>
+                  <% else %>
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                  <% end %>
+                <% end %>
+                <div class="media-body">
+                    <h4 class="media-heading"><%= comment.user.name %>
+                        <small><%= time_ago_in_words comment.created_at %>前</small>
+                    </h4>
+                    <%= comment.comment %>
+                </div>
+            </div>
+          <% end %>
+        <% end %>
           </div>
+        </div>
+
+        <hr>
+        <div class="row">
+          <%= form_for feed.user_post_comments.build, url: comment_create_hacker_user_post_path(feed.id) do |f| %>
+            <div class="input-group">
+              <%= f.text_field :comment, class: "form-control", placeholder: 'コメントの追加' %>
+              <div class="input-group-btn">
+                <%= f.submit 'コメント', class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
         </div>
         
       </div>

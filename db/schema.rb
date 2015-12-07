@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122104832) do
+ActiveRecord::Schema.define(version: 20151207143304) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -94,14 +94,6 @@ ActiveRecord::Schema.define(version: 20151122104832) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
-  create_table "responses", force: :cascade do |t|
-    t.integer  "thread_table_id", limit: 4
-    t.integer  "user_id",         limit: 4
-    t.text     "content",         limit: 65535
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
     t.integer  "taggable_id",   limit: 4
@@ -122,12 +114,12 @@ ActiveRecord::Schema.define(version: 20151122104832) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "thread_tables", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
-    t.string   "image",      limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "user_post_comments", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "user_post_id", limit: 4
+    t.text     "comment",      limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "user_posts", force: :cascade do |t|

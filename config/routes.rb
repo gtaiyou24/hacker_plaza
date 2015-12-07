@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     end
    end
    resources :relationships, only:[:create, :destroy]
-   resources :user_posts, only:[:index, :create]
+   resources :user_posts, only:[:index, :create] do
+    post :comment_create, on: :member
+   end
    resources :projects do
     member do
       get :show_users # プロジェクトにユーザーを追加するためのユーザー一覧ページ
